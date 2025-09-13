@@ -1,28 +1,36 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { createUser } from "../features/userDetailSlice";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { updateUser } from "../features/userDetailSlice";
 
-const Create = () => {
-  const [users, setUsers] = useState({});
+const Update = () => {
+  const { id } = useParams();
+
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
-  const navigate = useNavigate()
+  const [updateData, setUpdateData] = useState();
 
-  const getUserData = (e) => {
-    setUsers({ ...users, [e.target.name]: e.target.value });
-    // here e.target.value trigger the input and and e.target.name trigger the name of every input we declared [ eg: name: 'email', key:'value']
-    // console.log(users);
+  const { users, loading } = useSelector((state) => state.app);
+
+  useEffect(() => {
+    if (id) {
+      const singleUser = users.find((user) => user.id === id);
+      setUpdateData(singleUser);
+    }
+  }, []);
+
+  const newData = (e) => {
+    setUpdateData({ ...updateData, [e.target.name]: e.target.value });
   };
 
-  // pass the create asynthunk function in dispatch that we created in userDetailSlice
-  // actually from here we pass data to our mock api
+  console.log(updateData);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("users....", users);
-    dispatch(createUser(users));
-    navigate("/read")
+    dispatch(updateUser(updateData));
+    navigate("/read");
   };
 
   return (
@@ -31,7 +39,7 @@ const Create = () => {
         className="w-50 p-4 rounded shadow bg-white"
         onSubmit={handleSubmit}
       >
-        <h3 className="text-center text-primary mb-4">Create Profile</h3>
+        <h3 className="text-center text-primary mb-4">Update Profile</h3>
 
         {/* Name */}
         <div className="mb-3">
@@ -41,7 +49,8 @@ const Create = () => {
             className="form-control"
             placeholder="Enter your name"
             name="name"
-            onChange={getUserData}
+            value={updateData?.name}
+            onChange={newData}
           />
         </div>
 
@@ -53,7 +62,8 @@ const Create = () => {
             className="form-control"
             placeholder="Enter your email"
             name="email"
-            onChange={getUserData}
+            value={updateData?.email}
+            onChange={newData}
           />
         </div>
 
@@ -65,7 +75,8 @@ const Create = () => {
             className="form-control"
             placeholder="Enter your age"
             name="age"
-            onChange={getUserData}
+            value={updateData?.age}
+            onChange={newData}
           />
         </div>
 
@@ -78,7 +89,8 @@ const Create = () => {
               type="radio"
               name="gender"
               value="male"
-              onChange={getUserData}
+              checked={updateData?.gender === "male"}
+              onChange={newData}
             />
             <label className="form-check-label" htmlFor="male">
               Male
@@ -90,7 +102,8 @@ const Create = () => {
               type="radio"
               name="gender"
               value="female"
-              onChange={getUserData}
+              checked={updateData?.gender === "female"}
+              onChange={newData}
             />
             <label className="form-check-label" htmlFor="female">
               Female
@@ -102,7 +115,8 @@ const Create = () => {
               type="radio"
               name="gender"
               value="trans"
-              onChange={getUserData}
+              checked={updateData?.gender === "trans"}
+              onChange={newData}
             />
             <label className="form-check-label" htmlFor="trans">
               Trans
@@ -121,4 +135,4 @@ const Create = () => {
   );
 };
 
-export default Create;
+export default Update;
