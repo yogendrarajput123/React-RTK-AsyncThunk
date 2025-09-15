@@ -40,7 +40,6 @@ const Update = () => {
         onSubmit={handleSubmit}
       >
         <h3 className="text-center text-primary mb-4">Update Profile</h3>
-
         {/* Name */}
         <div className="mb-3">
           <label className="form-label fw-bold">Name</label>
@@ -53,7 +52,6 @@ const Update = () => {
             onChange={newData}
           />
         </div>
-
         {/* Email */}
         <div className="mb-3">
           <label className="form-label fw-bold">Email</label>
@@ -66,7 +64,6 @@ const Update = () => {
             onChange={newData}
           />
         </div>
-
         {/* Age */}
         <div className="mb-3">
           <label className="form-label fw-bold">Age</label>
@@ -80,6 +77,27 @@ const Update = () => {
           />
         </div>
 
+        {/* Profession */}
+        <div className="mb-3">
+          <label className="form-label fw-bold">Profession</label>
+          <select
+            className="form-select"
+            name="profession"
+            onChange={newData}
+            defaultValue=""
+          >
+            <option value="" disabled>
+              -- Select Profession --
+            </option>
+            <option value="HR">HR</option>
+            <option value="Developer">Developer</option>
+            <option value="BD">BD</option>
+            <option value="Manager">Manager</option>
+            <option value="Tester">Tester</option>
+            <option value="Staff">Staff</option>
+            <option value="DevOps">DevOps</option>
+          </select>
+        </div>
         {/* Gender */}
         <div className="mb-3">
           <label className="form-label fw-bold d-block">Gender</label>
@@ -123,7 +141,6 @@ const Update = () => {
             </label>
           </div>
         </div>
-
         {/* Submit Button */}
         <div className="text-center">
           <button type="submit" className="btn btn-primary px-4">

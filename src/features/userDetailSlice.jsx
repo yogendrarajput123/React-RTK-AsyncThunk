@@ -4,6 +4,7 @@ const initialState = {
   users: [],
   loading: false, // loading until data fetched
   error: null,
+  searchData: [],
 };
 
 //✍🏻✍🏻✍🏻✍🏻 STEP - 1 ==>> CREATE USER { createAsyncThunk 👈🏻 } ✍🏻✍🏻✍🏻✍🏻
@@ -49,7 +50,7 @@ export const showUser = createAsyncThunk(
   }
 );
 
-//✍🏻✍🏻✍🏻✍🏻 STEP - 2 ==>> DELETE USER  ✍🏻✍🏻✍🏻✍🏻
+//✍🏻✍🏻✍🏻✍🏻 STEP - 3 ==>> DELETE USER  ✍🏻✍🏻✍🏻✍🏻
 
 export const deleteUser = createAsyncThunk(
   "deleteUser",
@@ -69,7 +70,7 @@ export const deleteUser = createAsyncThunk(
   }
 );
 
-//✍🏻✍🏻✍🏻✍🏻 STEP - 2 ==>> UPDATE USER  ✍🏻✍🏻✍🏻✍🏻
+//✍🏻✍🏻✍🏻✍🏻 STEP - 4 ==>> UPDATE USER  ✍🏻✍🏻✍🏻✍🏻
 
 export const updateUser = createAsyncThunk(
   "updateUser",
@@ -92,12 +93,16 @@ export const updateUser = createAsyncThunk(
   }
 );
 
-// 👉🏽👉🏻👉🏻 REDUCERS  👈🏻👈🏻👈🏻
+// 👉🏽👉🏻👉🏻 REDUCERS ANS EXTRA-REDUCERS  👈🏻👈🏻👈🏻
 
 export const userDetail = createSlice({
   name: "userDetail",
   initialState,
-  reducers: {},
+  reducers: {
+    searchUser: (state, action) => {
+      state.searchData = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(createUser.pending, (state) => {
@@ -167,6 +172,8 @@ export const userDetail = createSlice({
 });
 
 export default userDetail.reducer;
+
+export const { searchUser } = userDetail.actions;
 
 /**
 

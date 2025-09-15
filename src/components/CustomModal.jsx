@@ -29,6 +29,9 @@ const CustomModal = ({ id, setShowPopUp }) => {
             🎂 <span>Age: {singleUser.age}</span>
           </div>
           <div className="userField">
+            🎂 <span>Profession: {singleUser.profession}</span>
+          </div>
+          <div className="userField">
             ⚧ <span>Gender: {singleUser.gender}</span>
           </div>
         </div>

@@ -8,7 +8,7 @@ const Create = () => {
 
   const dispatch = useDispatch();
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const getUserData = (e) => {
     setUsers({ ...users, [e.target.name]: e.target.value });
@@ -22,19 +22,19 @@ const Create = () => {
     e.preventDefault();
     console.log("users....", users);
     dispatch(createUser(users));
-    navigate("/read")
+    navigate("/read");
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center mt-4">
+    <div className="d-flex p-5 justify-content-center align-items-center mt-5">
       <form
         className="w-50 p-4 rounded shadow bg-white"
         onSubmit={handleSubmit}
       >
-        <h3 className="text-center text-primary mb-4">Create Profile</h3>
+        {/* <h3 className="text-center text-primary fw-bold mb-0">🧑‍💼</h3> */}
 
         {/* Name */}
-        <div className="mb-3">
+        <div className="mb-2">
           <label className="form-label fw-bold">Name</label>
           <input
             type="text"
@@ -46,7 +46,7 @@ const Create = () => {
         </div>
 
         {/* Email */}
-        <div className="mb-3">
+        <div className="mb-2">
           <label className="form-label fw-bold">Email</label>
           <input
             type="email"
@@ -58,7 +58,7 @@ const Create = () => {
         </div>
 
         {/* Age */}
-        <div className="mb-3">
+        <div className="mb-2">
           <label className="form-label fw-bold">Age</label>
           <input
             type="text"
@@ -69,8 +69,30 @@ const Create = () => {
           />
         </div>
 
+        {/* Profession */}
+        <div className="mb-2">
+          <label className="form-label fw-bold">Profession</label>
+          <select
+            className="form-select"
+            name="profession"
+            onChange={getUserData}
+            defaultValue=""
+          >
+            <option value="" disabled>
+              -- Select Profession --
+            </option>
+            <option value="HR">HR</option>
+            <option value="Developer">Developer</option>
+            <option value="BD">BD</option>
+            <option value="Manager">Manager</option>
+            <option value="Manager">Tester</option>
+            <option value="Staff">Staff</option>
+            <option value="DevOps">DevOps</option>
+          </select>
+        </div>
+
         {/* Gender */}
-        <div className="mb-3">
+        <div className="mb-2">
           <label className="form-label fw-bold d-block">Gender</label>
           <div className="form-check form-check-inline">
             <input
@@ -112,7 +134,7 @@ const Create = () => {
 
         {/* Submit Button */}
         <div className="text-center">
-          <button type="submit" className="btn btn-primary px-4">
+          <button type="submit" className="btn btn-primary px-5 mt-2">
             Submit
           </button>
         </div>
