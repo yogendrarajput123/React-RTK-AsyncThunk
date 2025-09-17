@@ -13,7 +13,7 @@ const Read = () => {
   const [radioData, setRadiodata] = useState("");
 
   // When we hit the submit button, this component will automatically fetch data.
-  // For that, we use the useEffect() hook to dispatch the showUser action.
+  // For that, we use the useEffect() hook to dispatch the showUser action.+~
   const dispatch = useDispatch();
 
   // Here state.app refers to the store which holds users, loading, and error.
@@ -142,10 +142,7 @@ const Read = () => {
             } else {
               return (
                 user.name.toLowerCase().includes(searchData.toLowerCase()) ||
-                user.profession
-                  .toLowerCase()
-                  .includes(searchData.toLowerCase()) ||
-                user.age.toLowerCase().includes(searchData.toLowerCase())
+                user.profession.toLowerCase().includes(searchData.toLowerCase())
               );
             }
           })

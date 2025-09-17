@@ -7,6 +7,9 @@ const CustomModal = ({ id, setShowPopUp }) => {
 
   const singleUser = allUserData.find((user) => user.id === id);
 
+  // // 🛡️ If user is deleted or not found, don't render modal at all
+  if (!singleUser) return null;
+
   return (
     <div className="modalBackground">
       <div className="modalContainer">
